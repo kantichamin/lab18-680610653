@@ -131,12 +131,12 @@ export const useEnrollmentStore = create<EnrollmentStore>()((set) => ({
   },
 
   removeStudent: async (studentId) => {
-    const deleted = await api<ApiStudent>("/students", {
+    await api<ApiStudent>("/students", {
       method: "DELETE",
       body: { studentId },
     });
     set((state) => ({
-      students: state.students.filter((s) => s.studentId !== deleted.studentId),
+      students: state.students.filter((s) => s.studentId !== studentId),
       enrollments: state.enrollments.filter((e) => e.studentId !== studentId),
     }));
   },
@@ -197,7 +197,7 @@ export const useEnrollmentStore = create<EnrollmentStore>()((set) => ({
   },
 
   dropEnrollment: async (studentId, courseId) => {
-    await api("/enrollments", {
+    await api<Enrollment>("/enrollments", {
       method: "DELETE",
       body: { studentId, courseId },
     });

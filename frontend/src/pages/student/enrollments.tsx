@@ -246,7 +246,7 @@ export default function StudentEnrollmentsPage() {
             {myEnrollments.length === 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={4}
+                  colSpan={5}
                   className="h-20 text-center text-muted-foreground"
                 >
                   ยังไม่ได้ลงทะเบียนวิชาใด

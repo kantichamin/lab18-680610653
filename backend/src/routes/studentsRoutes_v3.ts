@@ -195,7 +195,7 @@ router.put(
     try {
       const body = (await req.body) as Student;
 
-      const result = zStudentPutBody.safeParse(body); // check zod
+      const result = zStudentPutBody.safeParse(body);
       if (!result.success) {
         return res.status(400).json({
           success: false,
@@ -249,7 +249,7 @@ router.delete(
   checkRoleAdmin,
   async (req: CustomRequest, res: Response) => {
     try {
-      const result = zStudentId.safeParse(req.body); // check zod
+      const result = zStudentId.safeParse(req.body.studentId);
       if (!result.success) {
         return res.status(400).json({
           success: false,

@@ -18,14 +18,15 @@ const interestLabel = (id: string) =>
   interestOptions.find((o) => o.id === id)?.label ?? id;
 
 export default function AdminStudentsPage() {
-  const { students, enrollments, removeStudent } = useEnrollmentStore();
+  const { students, enrollments } = useEnrollmentStore();
+  const removeStudent = useEnrollmentStore((s) => s.removeStudent);
   // ข้อความ error จาก Backend ตอนลบไม่สำเร็จ
   const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const handleDelete = async (studentId: string) => {
     setDeleteError(null);
     try {
-      await removeStudent(studentId); 
+      await removeStudent(studentId);
     } catch (err) {
       setDeleteError((err as Error).message);
     }
